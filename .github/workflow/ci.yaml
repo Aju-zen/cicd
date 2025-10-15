@@ -1,0 +1,24 @@
+name: Github CICD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  simple-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Quick Node check (optional)
+        run: |
+          if [ -f package.json ]; then
+            echo "package.json found"
+          else
+            echo "No package.json — skipping Node checks"
+          fi
+
+      - name: Note about enabling GPT-5 mini
+        run: |
+          echo "To enable 'GPT-5 mini for all clients' you must be an org admin and use an admin API or console."
+          echo "This repository workflow cannot toggle that setting directly."
